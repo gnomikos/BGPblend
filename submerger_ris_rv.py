@@ -134,7 +134,7 @@ class SubMerger():
         with concurrent.futures.ThreadPoolExecutor(max_workers=31) as executor:
             executor.map(self.get_and_write_ris_asns, list_of_param_dicts)
 
-    def ris_prefixes_scheduler(self, starttime, endtime, ris_data_dir, asns = [], min_peers_seeing=10):
+    def ris_prefixes_scheduler(self, starttime, endtime, ris_data_dir, asns = [], min_peers_seeing=2):
         # Retrieve RIS prefixes of the candidate AS list for the given date
     
         starttime = datetime.datetime.strptime(starttime, "%Y-%m-%d")
