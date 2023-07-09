@@ -6,6 +6,7 @@ import ipaddress
 import socket
 import pytricia
 
+
 def calc_prefix_diff(super_prefix, sub_prefix):
     super_prefix_netaddr = netaddr.IPNetwork(super_prefix)
     sub_prefix_netaddr = netaddr.IPNetwork(sub_prefix)
