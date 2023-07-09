@@ -6,7 +6,7 @@ To download datasets for the time period between 2022-02-01 and 2022-03-01 (Y-M-
 
 To merge the retrieved datasets for the time period between 2022-02-01 adn 2022-03-01 (Y-M-D):
 
-`$ python3 bgpblend.py  -id ./ -s 2022-02-01 -e 2022-02-01 merge -o test -ex private_reserved_v4.txt -t 10`
+`$ python3 bgpblend.py  -id ./ -s 2022-02-01 -e 2022-03-01 merge -o test -ex private_reserved_v4.txt -t 10`
 
 #### Requirements:
 - requires Python 3.6 or greater
