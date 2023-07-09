@@ -67,19 +67,11 @@ def export_pyt_to_json(pyt, filename):
         print('Export Error with file:', filename)
     
 def is_valid_ip_address(address, kind):
-    '''
-    Checks if the given ip/prefix is valid.
-    Input: 
-        a) address: ip or prefix.
-        b) kind: "ip" for ip address or "prefix" for prefix.
-    Output:
-        a) True if the given input is valid, False otherwise.
-    '''
 
     if not address:
         return False
     else:
-        # For IPs handling.
+        # For IP handling
         if kind == 'ip':
             try:
                 socket.inet_aton(address)
@@ -88,7 +80,7 @@ def is_valid_ip_address(address, kind):
                 print('error with IP:', address, '-', e)
                 return False
             
-        # For Prefixes Handling.
+        # For Prefix Handling
         elif kind == 'prefix':
             try:
                 if ':' not in address and ipaddress.IPv4Network(address):

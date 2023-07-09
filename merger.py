@@ -25,7 +25,7 @@ class merger():
             if prefix in self.db:
                 prefix_parent = self.db.get_key(prefix)
 
-                # Make a new sub_tree to keep consistency in prefix-to-as mappings when new subprefixes are created under diff process for all parents of the given prefix.
+                # Make a new sub_tree to keep consistency in prefix-to-as mappings when new subprefixes are created under diff process for all parents of the given prefix
                 sub_tree = pytricia.PyTricia()
                 while prefix_parent:
                     # Take diff between superprefix and prefix
@@ -34,7 +34,7 @@ class merger():
                     parent_ases = self.db[prefix_parent]
                     del self.db[prefix_parent]
                     
-                    # Make a new tree with the new sub prefixes after diff process.
+                    # Make a new tree with the new sub prefixes after diff process
                     for diff_prefix in diff_prefixes:
                         # Do not touch existing prefixes/subprefixes
                         if diff_prefix not in sub_tree:

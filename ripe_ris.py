@@ -141,34 +141,36 @@ class ripe_ris():
         
         try:
             request_response = requests.get(url=ripe_ris_widget_url, timeout=10)
-        except ConnectTimeout:
-            print('Request has timed out for AS', asn, starttime)
-        json_data = request_response.json()
-        prefixes_raw_list = set()
-       
-        if 'data' in json_data:
-            if 'resource' in json_data['data'] and json_data['data']['resource'] == asn:
-                if 'prefixes' in json_data['data']:
-                    for item in json_data['data']['prefixes']:
-                        prefixes_raw_list.add(item['prefix'])
-        prefixes_set = set(prefixes_raw_list)
-        prefixes_list = list(prefixes_set)
-        
-        if prefixes_list:
-            prefixes_to_remove = set()
-            for prefix in prefixes_list:
-                ipv4_net_match = re.match('^([0-9.]+){4}\/[0-9]+$', prefix)
-                if not ipv4_net_match:
-                    prefixes_to_remove.add(prefix)
-                else:
-                    try:
-                        netaddr_prefix = netaddr.IPNetwork(prefix)
-                    except:
-                        prefixes_to_remove.add(prefix)
-            for prefix in prefixes_to_remove:
-                prefixes_list.remove(prefix)
+
+            json_data = request_response.json()
+            prefixes_raw_list = set()
+           
+            if 'data' in json_data:
+                if 'resource' in json_data['data'] and json_data['data']['resource'] == asn:
+                    if 'prefixes' in json_data['data']:
+                        for item in json_data['data']['prefixes']:
+                            prefixes_raw_list.add(item['prefix'])
+            prefixes_set = set(prefixes_raw_list)
+            prefixes_list = list(prefixes_set)
             
             if prefixes_list:
-                filename = "{}/AS{}.json".format(params["ris_data_dir"], asn)
-                lib.export_json(prefixes_list, filename)
+                prefixes_to_remove = set()
+                for prefix in prefixes_list:
+                    ipv4_net_match = re.match('^([0-9.]+){4}\/[0-9]+$', prefix)
+                    if not ipv4_net_match:
+                        prefixes_to_remove.add(prefix)
+                    else:
+                        try:
+                            netaddr_prefix = netaddr.IPNetwork(prefix)
+                        except:
+                            prefixes_to_remove.add(prefix)
+                for prefix in prefixes_to_remove:
+                    prefixes_list.remove(prefix)
+                
+                if prefixes_list:
+                    filename = "{}/AS{}.json".format(params["ris_data_dir"], asn)
+                    lib.export_json(prefixes_list, filename)
+        except ConnectTimeout:
+            print('Request has timed out for AS', asn, starttime)
 
+        
