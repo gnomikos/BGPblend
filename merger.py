@@ -46,7 +46,6 @@ class merger():
                     if new_sub_prefix not in self.db:
                         self.db[new_sub_prefix] = sub_tree[new_sub_prefix]  
                     
-        #return database
 
     def import_prefixes_to_exclude(self, filename):
         with open(filename) as f:
