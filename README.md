@@ -4,6 +4,7 @@ BGPblend combines BGP data from RIPE RIS and Routeviews to address the challenge
 Due to BGP prefix hijack attacks, route leaks or any other misconfiguration, a daily BGP snapshot may contain tainted entries misinfering AS-to-prefix mappings.
 
 **Why BGPblend is important?**
+
 Can be used for:
 - More accurate monitoring when translating IP paths to AS paths
 - Preliminary indications of BGP misconfigurations/attacks
