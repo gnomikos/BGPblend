@@ -14,10 +14,10 @@ Can be used for:
 
 ## How it works
 - For a given time window it collects all the announced ASes as seen from both RIPE RIS and Routeviews monitors and for each AS it fetches the corresponding prefixes.
-- Selecting a consistency threshold (%), we preserve only the AS-to-prefix mappings that consistently appeared for more than the applied threshold (number of days) accross the selected period.
-- Then, it merges the RIPE RIS and Routeviews datasets respectively accross the time window for which it has already downloaded data according to the initial step, extracting two representative merged files for every database.
+- Selecting a consistency threshold (%), we preserve only the AS-to-prefix mappings that consistently appeared for more than the applied threshold (number of days) across the selected period.
+- Then, it merges the RIPE RIS and Routeviews datasets respectively across the time window for which it has already downloaded data according to the initial step, extracting two representative merged files for every database.
 - Finally, it merges the two merged files from the previous step. 
-- We filter out the final list with the reserved IP prefixees.
+- We filter out the final list with the reserved IP prefixes.
 - For those conflicting cases where for the same prefix we have multiple AS mappings, we consider all associated ASes as valid mappings and treat the case as BGP MOAS.
 
 ## How to run
@@ -36,6 +36,8 @@ and the final dir, containing the merged file as derived merging the two files f
 
 ## Requirements
 - Python 3.6 or greater
+- PyTricia
+- UltraJSON
 
 ## Limitation
 It only works with the IPv4 address space.
