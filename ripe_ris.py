@@ -139,7 +139,10 @@ class ripe_ris():
         ripe_ris_widget_url += "&starttime=" + starttime
         ripe_ris_widget_url += "&endtime=" + endtime
         
-        request_response = requests.get(url=ripe_ris_widget_url)
+        try:
+            request_response = requests.get(url=ripe_ris_widget_url, timeout=10)
+        except ConnectTimeout:
+            print('Request has timed out for AS', asn, starttime)
         json_data = request_response.json()
         prefixes_raw_list = set()
        
