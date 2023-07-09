@@ -13,4 +13,4 @@ To merge the retrieved datasets for the time period between 2022-02-01 adn 2022-
 
 ## License
 
-This repository is licensed under the [MIT License](LICENSE). All code in this repository belongs to Georgios Nomikos unless otherwise stated.
+This repository is licensed under the [GNU AGPLv3](LICENSE). All code in this repository belongs to Georgios Nomikos unless otherwise stated.
