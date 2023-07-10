@@ -5,7 +5,7 @@ Due to BGP prefix hijack attacks, route leaks or any other misconfiguration, a d
 
 **Why BGPblend is important?**
 
-Can be used for:
+The output data might be used for:
 - More accurate monitoring when translating IP paths to AS paths
 - Preliminary indications of BGP misconfigurations/attacks
 - More accurate IP geolocation based on AS country feeds
