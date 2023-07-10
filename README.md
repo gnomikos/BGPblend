@@ -1,6 +1,6 @@
 ## Introduction
 
-BGPblend combines BGP data from RIPE RIS and Routeviews to address the challenge of mapping IP Prefixes to ASes with high accuracy and coverage.
+BGPblend combines BGP data from RIPE RIS and Routeviews to address the challenge of mapping IP Prefixes to ASes with high accuracy and coverage utilizing a configurable consistency threshold.
 Due to BGP prefix hijack attacks, route leaks or any other misconfiguration, a daily BGP snapshot may contain invalid entries misinfering AS-to-prefix mappings.
 
 **Why BGPblend is important?**
