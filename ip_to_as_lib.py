@@ -10,16 +10,8 @@ import pytricia
 def calc_prefix_diff(super_prefix, sub_prefix):
     super_prefix_netaddr = netaddr.IPNetwork(super_prefix)
     sub_prefix_netaddr = netaddr.IPNetwork(sub_prefix)
-    assert sub_prefix_netaddr in super_prefix_netaddr, "'{}' is not a super-prefix of '{}'".format(super_prefix, sub_prefix)
     prefix_diff_list = netaddr.cidr_exclude(super_prefix_netaddr, sub_prefix_netaddr)
     return set(map(str, prefix_diff_list))
-
-def convert_json_to_pyt(json):
-    pyt = pytricia.PyTricia(128)
-
-    for entry in json:
-        pyt[entry] = json[entry]
-    return pyt
 
 def dict_list_to_set(data):
     for entry in data:

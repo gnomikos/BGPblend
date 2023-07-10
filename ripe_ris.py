@@ -10,6 +10,13 @@ import netaddr
 import re
 
 class ripe_ris():
+    def __init__(self, input_dir):
+        # Create initial directories for RIPE and Routeviews datasets
+        if not os.path.isdir(input_dir+'ris/'):
+            os.mkdir(input_dir+'ris/')
+        if not os.path.isdir(input_dir+'routeviews/'):
+            os.mkdir(input_dir+'routeviews/')
+
 
     def ris_asns_scheduler(self, starttime, endtime, input_dir):
         # Initiates the directories to download for each ASN the corresponding prefixes
@@ -93,6 +100,7 @@ class ripe_ris():
                 print('Skipping %s RIS prefix snapshot' % date)
             else:
                 self.get_and_write_ris_prefixes( date, date, ris_data_dir=params['input_dir']+'snapshots/', asns = asns)
+
 
     def get_and_write_ris_prefixes(self, starttime, endtime, ris_data_dir, asns = [], min_peers_seeing=2):
 

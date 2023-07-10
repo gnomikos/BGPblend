@@ -31,15 +31,9 @@ def main():
 
     if args.subparser_name == 'download':
 
-        # Create initial directories for RIPE and Routeviews datasets
-        if not os.path.isdir(args.input_dir+'ris/'):
-            os.mkdir(args.input_dir+'ris/')
-        if not os.path.isdir(args.input_dir+'routeviews/'):
-            os.mkdir(args.input_dir+'routeviews/')
-
         # Step 1: Download RIPE RIS ASN snapshots. 
         # Skips existing AS snapshots. To re-download remove the sub(directory)
-        ripe_ris_ = ripe_ris.ripe_ris()
+        ripe_ris_ = ripe_ris.ripe_ris(args.input_dir)
         ripe_ris_.ris_asns_scheduler(args.start_date, args.end_date, args.input_dir)    
 
         # Step 2: Parse RIPE RIS ASN snapshots to fetch prefix-to-AS mappings
