@@ -80,10 +80,10 @@ class routeviews():
         list_of_param = []
         input_dir+='routeviews/'
 
-        # Download first the raw routeviews snapshots
+        # Download the raw routeviews snapshots
         self.download_rv_raw_snaps(input_dir, start_date, end_date)
         
-        # Create snapshots directory
+        # Create the snapshots directory
         if not os.path.isdir(input_dir+'snapshots/'):
             os.mkdir(input_dir+'snapshots/')
 

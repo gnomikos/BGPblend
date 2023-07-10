@@ -11,7 +11,7 @@ import merger
     
 def main():
 
-    parser = argparse.ArgumentParser(description="Script to retrieve parse and merge RIPE RIS and Routeviews snapshots to produce merged IP prefix to AS mappings per dataset")
+    parser = argparse.ArgumentParser(description="A tool to retrieve parse and merge RIPE RIS and Routeviews snapshots of AS-to-IP prefix mappings")
     subparsers = parser.add_subparsers(help='choose either download or merge for help', dest='subparser_name')
 
     parser_download = subparsers.add_parser('download', help='download --help')
