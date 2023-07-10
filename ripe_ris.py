@@ -58,10 +58,10 @@ class ripe_ris():
             print('Skipping %s RIS ASN snapshot' % starttime)
         else:
             print('Retrieving RIS ASNs for the snapshot: %s' % starttime)
-            ripe_ris_widget_url = "https://stat.ripe.net/data/ris-asns/data.json?list_asns=" + list_asns 
-            ripe_ris_widget_url += "&query_time=" + starttime
+            ripe_ris_api_url = "https://stat.ripe.net/data/ris-asns/data.json?list_asns=" + list_asns 
+            ripe_ris_api_url += "&query_time=" + starttime
             
-            request_response = requests.get(url=ripe_ris_widget_url)
+            request_response = requests.get(url=ripe_ris_api_url)
             lib.export_json(request_response.json(),ris_data_dir+starttime+'.json')
 
 
@@ -142,13 +142,13 @@ class ripe_ris():
         starttime        = params['starttime']
         endtime          = params['endtime']
 
-        ripe_ris_widget_url = "https://stat.ripe.net/data/announced-prefixes/data.json?min_peers_seeing=" + min_peers_seeing 
-        ripe_ris_widget_url += "&resource=" + asn
-        ripe_ris_widget_url += "&starttime=" + starttime
-        ripe_ris_widget_url += "&endtime=" + endtime
+        ripe_ris_api_url = "https://stat.ripe.net/data/announced-prefixes/data.json?min_peers_seeing=" + min_peers_seeing 
+        ripe_ris_api_url += "&resource=" + asn
+        ripe_ris_api_url += "&starttime=" + starttime
+        ripe_ris_api_url += "&endtime=" + endtime
         
         try:
-            request_response = requests.get(url=ripe_ris_widget_url, timeout=10)
+            request_response = requests.get(url=ripe_ris_api_url, timeout=10)
 
             json_data = request_response.json()
             prefixes_raw_list = set()
