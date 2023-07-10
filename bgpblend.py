@@ -47,12 +47,12 @@ def main():
         routeviews_.routeviews_scheduler(args.start_date, args.end_date, args.input_dir, int(args.max_workers))    
 
     if args.subparser_name == 'merge':
-        merger_ = merger.merger()
+        merger_ = merger.merger(args.threshold)
         # Step 5: Merge RV snapshots
-        merger_.merge_snapshots(args.start_date, args.end_date, args.input_dir, 'routeviews/snapshots/', args.output_filename, args.threshold)
+        merger_.merge_snapshots(args.start_date, args.end_date, args.input_dir, 'routeviews/snapshots/', args.output_filename)
         
         # Step 6: Merge RIS snapshots
-        merger_.merge_snapshots(args.start_date, args.end_date, args.input_dir, 'ris/snapshots/', args.output_filename, args.threshold)
+        merger_.merge_snapshots(args.start_date, args.end_date, args.input_dir, 'ris/snapshots/', args.output_filename)
 
         # Step 7: Merge the merged RIPE and routeviews snapshots for the given time window
         merger_.merge_ris_routeviews(args.start_date, args.end_date, args.input_dir, args.exclude_file_name)

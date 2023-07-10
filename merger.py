@@ -10,8 +10,10 @@ import datetime
 
 class merger():
 
-    def __init__(self):
+    def __init__(self, threshold):
         self.db = pytricia.PyTricia()
+        assert threshold>=0 and threshold<=100
+        self.threshold = threshold
 
     def clean_db(self, exclude_prefixes):
 
@@ -60,6 +62,7 @@ class merger():
                 
         return exclude_prefixes
 
+
     def clean_from_invalid_prefixes(self, data):
         # Sanitizes dataset from invalid/malformed IPv4 prefixes
         invalid_prefixes_to_remove = []
@@ -73,8 +76,8 @@ class merger():
 
         return data
 
+
     def add_to_db(self, prefixes, json):
-        
         for prefix in prefixes:
             # New prefix in db
             if prefix not in self.db:
@@ -95,7 +98,6 @@ class merger():
 
 
     def merge_ris_routeviews(self, start_date, end_date, input_dir, exclude_file_name):
-
         # Create snapshots directory
         if not os.path.isdir(input_dir+'final/'):
             os.mkdir(input_dir+'final/')
@@ -114,7 +116,6 @@ class merger():
         ripe_json = lib.dict_list_to_set(lib.import_json(input_dir+'merged/'+ripe_ris_file))
         ripe_json = self.clean_from_invalid_prefixes(ripe_json)
         print('RIS snapshot has been imported.')
-
 
         rv_masks_to_prefixes   = lib.dict_mask_to_prefixes(rv_json.keys())
         ripe_masks_to_prefixes = lib.dict_mask_to_prefixes(ripe_json.keys())
@@ -137,7 +138,7 @@ class merger():
         
         print('Merging has finished')
 
-    def merge_snapshots(self, start_date, end_date, input_dir, dataset, output_filename, threshold):
+    def merge_snapshots(self, start_date, end_date, input_dir, dataset, output_filename):
         # Merges for each dataset (RIS, routeviews) the daily snapshots extracting
         # two different merged IP prefix to AS mapping files for each dataset
 
@@ -171,7 +172,7 @@ class merger():
         db = {}
         # Keep only ip2as mappings complied with the specified threshold
         for prefix,asn in merged_snaps:
-            if (merged_snaps[(prefix,asn)]/number_of_snaps)*100 >= threshold:
+            if (merged_snaps[(prefix,asn)]/number_of_snaps)*100 >= self.threshold:
                 if prefix in db:
                     db[prefix].append(asn)
                 else:
