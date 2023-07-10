@@ -44,4 +44,4 @@ It only works with the IPv4 address space.
 
 ## License
 
-This repository is licensed under the [GNU AGPLv3](LICENSE). All code in this repository belongs to Georgios Nomikos.
+This repository is licensed under the [GNU AGPLv3](LICENSE). All code in this repository belongs to [Georgios Nomikos](https://www.linkedin.com/in/georgenomikos).
