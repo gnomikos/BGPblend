@@ -3,7 +3,6 @@
 import sys
 import argparse
 import os
-import ip_to_as_lib as lib
 import ripe_ris 
 import routeviews
 import merger

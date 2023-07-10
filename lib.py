@@ -7,30 +7,6 @@ import socket
 import pytricia
 
 
-def calc_prefix_diff(super_prefix, sub_prefix):
-    super_prefix_netaddr = netaddr.IPNetwork(super_prefix)
-    sub_prefix_netaddr = netaddr.IPNetwork(sub_prefix)
-    prefix_diff_list = netaddr.cidr_exclude(super_prefix_netaddr, sub_prefix_netaddr)
-    return set(map(str, prefix_diff_list))
-
-def dict_list_to_set(data):
-    for entry in data:
-        data[entry] = set(data[entry])
-    return data
-
-def dict_mask_to_prefixes(prefixes):
-    mask_to_prefixes = {}
-
-    for prefix in prefixes:
-        mask = int(prefix.split('/')[1])
-        if mask in mask_to_prefixes:
-            mask_to_prefixes[mask].add(prefix)
-        else:
-            mask_to_prefixes[mask] = set()
-            mask_to_prefixes[mask].add(prefix)
-
-    return {mask:mask_to_prefixes[mask] for mask in sorted(mask_to_prefixes)}
-
 def import_json(filename):
     try:
         with open(filename, 'r') as fp:
@@ -40,6 +16,7 @@ def import_json(filename):
         print('Import Error with file:', filename)
         exit()
 
+
 def export_json(data, filename):
     try:
         with open(filename, 'w') as fp:
@@ -47,6 +24,7 @@ def export_json(data, filename):
     except Exception:
         print('Export Error with file:', filename)
         exit()
+
 
 def export_pyt_to_json(pyt, filename):
     data = {}
@@ -58,6 +36,7 @@ def export_pyt_to_json(pyt, filename):
     except Exception:
         print('Export Error with file:', filename)
     
+
 def is_valid_ip_address(address, kind):
 
     if not address:
@@ -87,4 +66,31 @@ def is_valid_ip_address(address, kind):
                 print('Error 3 with prefix:', address, '-', e)
 
             return False
+
+
+def calc_prefix_diff(super_prefix, sub_prefix):
+    super_prefix_netaddr = netaddr.IPNetwork(super_prefix)
+    sub_prefix_netaddr = netaddr.IPNetwork(sub_prefix)
+    prefix_diff_list = netaddr.cidr_exclude(super_prefix_netaddr, sub_prefix_netaddr)
+    return set(map(str, prefix_diff_list))
+
+
+def dict_list_to_set(data):
+    for entry in data:
+        data[entry] = set(data[entry])
+    return data
+
+
+def dict_mask_to_prefixes(prefixes):
+    mask_to_prefixes = {}
+
+    for prefix in prefixes:
+        mask = int(prefix.split('/')[1])
+        if mask in mask_to_prefixes:
+            mask_to_prefixes[mask].add(prefix)
+        else:
+            mask_to_prefixes[mask] = set()
+            mask_to_prefixes[mask].add(prefix)
+
+    return {mask:mask_to_prefixes[mask] for mask in sorted(mask_to_prefixes)}
 

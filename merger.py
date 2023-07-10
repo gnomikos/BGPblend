@@ -2,7 +2,7 @@
 
 import argparse
 import pytricia
-import ip_to_as_lib as lib
+import lib
 from dateutil import rrule
 import os
 import datetime
@@ -14,6 +14,7 @@ class merger():
         self.db = pytricia.PyTricia()
         assert threshold>=0 and threshold<=100
         self.threshold = threshold
+
 
     def clean_db(self, exclude_prefixes):
 
@@ -129,7 +130,7 @@ class merger():
             if mask in ripe_masks_to_prefixes:
                 self.add_to_db(ripe_masks_to_prefixes[mask], ripe_json)
         
-        # Import reserved prefixes to exclude from databases
+        # Import reserved prefixes to exclude from the database
         exclude_prefixes = self.import_prefixes_to_exclude(exclude_file_name)
 
         self.clean_db(exclude_prefixes)

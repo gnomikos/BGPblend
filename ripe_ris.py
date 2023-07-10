@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import ip_to_as_lib as lib
+import lib
 import os
 import datetime
 from dateutil import rrule

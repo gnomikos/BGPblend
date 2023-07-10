@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import ip_to_as_lib as lib
+import lib
 import os
 import concurrent.futures
 from dateutil import rrule
