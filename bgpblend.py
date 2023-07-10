@@ -16,15 +16,15 @@ def main():
     parser_download = subparsers.add_parser('download', help='download --help')
     parser_merge = subparsers.add_parser('merge', help='merge --help')
 
-    parser.add_argument('-s', '--start_date', type=str, help='First date of datasets to retrieve', required=True)
-    parser.add_argument('-e', '--end_date', type=str, help='Final date of datasets to retrieve', required=True)
-    parser.add_argument('-id', '--input_dir', type=str, help='name of the input directory containing all the input files', required=True)
+    parser.add_argument('-s', '--start_date', type=str, help='Start date of datasets to retrieve', required=True)
+    parser.add_argument('-e', '--end_date', type=str, help='End date of datasets to retrieve', required=True)
+    parser.add_argument('-id', '--input_dir', type=str, help='path of the input directory containing all the input files or directories', required=True)
 
     parser_download.add_argument('-m', '--max_workers', type=str, help='number of processes to be spawned', default=2)
 
     parser_merge.add_argument('-o', '--output_filename', type=str, help='suffix of the .json output filename, as stored in the final directory, after merging ris and routeviews snapshots for the selected time window', required=True)
-    parser_merge.add_argument('-t', '--threshold', type=int, help='merging threshold', required=True)
-    parser_merge.add_argument('-ex', '--exclude_file_name', type=str, help='file with prefixes to exclude from db/sub_radb', required=True)
+    parser_merge.add_argument('-t', '--threshold', type=int, help='consistency threshold in % (0-100) to be applied under merging process', required=True)
+    parser_merge.add_argument('-ex', '--exclude_file_name', type=str, help='filename with the reserved prefixes to exclude from the final dataset', required=True)
     
     args = parser.parse_args()
 
