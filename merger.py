@@ -12,7 +12,6 @@ class merger():
 
     def __init__(self, threshold):
         self.db = pytricia.PyTricia()
-        assert threshold>=0 and threshold<=100
         self.threshold = threshold
 
 

@@ -6,9 +6,17 @@ import os
 import ripe_ris 
 import routeviews
 import merger
+import functools
 
     
 def main():
+
+    def range_type(astr, min, max):
+        value = int(astr)
+        if min<= value <= max:
+            return value
+        else:
+            raise argparse.ArgumentTypeError('value not in range %s-%s'%(min,max))
 
     parser = argparse.ArgumentParser(description="A tool to retrieve parse and merge RIPE RIS and Routeviews snapshots of AS-to-IP prefix mappings")
     subparsers = parser.add_subparsers(help='choose either download or merge for help', dest='subparser_name')
@@ -23,7 +31,7 @@ def main():
     parser_download.add_argument('-m', '--max_workers', type=str, help='number of processes to be spawned', default=2)
 
     parser_merge.add_argument('-o', '--output_filename', type=str, help='suffix of the .json output filename, as stored in the final directory, after merging ris and routeviews snapshots for the selected time window', required=True)
-    parser_merge.add_argument('-t', '--threshold', type=int, help='consistency threshold in % (0-100) to be applied under merging process', required=True)
+    parser_merge.add_argument('-t', '--threshold', type=functools.partial(range_type, min=0, max=100), help='consistency threshold in % (0-100) to be applied under merging process', required=False, default=50, metavar="[0-100]")
     parser_merge.add_argument('-ex', '--exclude_file_name', type=str, help='filename with the reserved prefixes to exclude from the final dataset', required=True)
     
     args = parser.parse_args()
