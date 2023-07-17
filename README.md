@@ -41,6 +41,7 @@ and the **final** directory, containing the final merged file as derived merging
 - python-dateutil
 - netaddr
 - requests
+- wget
 
 ## Limitation
 It only works with the IPv4 address space.

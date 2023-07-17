@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
-import sys
 import argparse
-import os
 import ripe_ris 
 import routeviews
 import merger
